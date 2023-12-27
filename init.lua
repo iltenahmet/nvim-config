@@ -269,6 +269,8 @@ vim.o.noexpandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+vim.o.linebreak = true
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
