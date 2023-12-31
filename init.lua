@@ -34,7 +34,7 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  -- 'tpope/vim-sleuth',
+  'tpope/vim-sleuth',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -193,6 +193,8 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+	  -- Ahmet
+	  'nvim-telescope/telescope-project.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -265,9 +267,11 @@ require("gruvbox").setup({
 })
 vim.cmd([[colorscheme gruvbox]])
 
-vim.o.noexpandtab = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+-- disables automatic conversion of spaces to tabs when pressing the tab key
+-- vim.o.noexpandtab = true
+
+-- vim.o.tabstop = 4
+-- vim.o.shiftwidth = 4
 
 vim.o.linebreak = true
 
@@ -348,6 +352,8 @@ require('telescope').setup {
   },
 }
 
+-- Ahmet
+require('telescope').load_extension('project')
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
