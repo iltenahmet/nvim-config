@@ -159,7 +159,7 @@ require('lazy').setup({
   },
 
   -- Ahmet
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
 
   {
     -- Set lualine as statusline
@@ -194,7 +194,7 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
 	  -- Ahmet
-	  'nvim-telescope/telescope-project.nvim',
+	    'nvim-telescope/telescope-project.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -239,40 +239,43 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 --Ahmet
-vim.o.background = "dark" -- or "light" for light mode
--- Default options:
-require("gruvbox").setup({
-  terminal_colors = true, -- add neovim terminal colors
-  undercurl = true,
-  underline = true,
-  bold = false,
-  italic = {
-    strings = true,
-    emphasis = true,
-    comments = true,
-    operators = false,
-    folds = true,
-  },
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
-  palette_overrides = {},
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = false,
-})
-vim.cmd([[colorscheme gruvbox]])
+  vim.o.background = "dark" -- or "light" for light mode
+  -- Default options:
+  require("gruvbox").setup({
+    terminal_colors = true, -- add neovim terminal colors
+    undercurl = true,
+    underline = true,
+    bold = false,
+    italic = {
+      strings = true,
+      emphasis = true,
+      comments = true,
+      operators = false,
+      folds = true,
+    },
+    strikethrough = true,
+    invert_selection = false,
+    invert_signs = false,
+    invert_tabline = false,
+    invert_intend_guides = false,
+    inverse = true, -- invert background for search, diffs, statuslines and errors
+    contrast = "hard", -- can be "hard", "soft" or empty string
+    palette_overrides = {},
+    overrides = {},
+    dim_inactive = false,
+    transparent_mode = false,
+  })
+  vim.cmd([[colorscheme gruvbox]])
 
--- disables automatic conversion of spaces to tabs when pressing the tab key
--- vim.o.noexpandtab = true
+  -- disables automatic conversion of spaces to tabs when pressing the tab key
+  -- vim.o.noexpandtab = true
 
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.linebreak = true
+  vim.o.tabstop = 4
+  vim.o.shiftwidth = 4
+  vim.o.linebreak = true
+
+  --Ahmet 
+  vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -352,7 +355,8 @@ require('telescope').setup {
 }
 
 -- Ahmet
-require('telescope').load_extension('project')
+  require('telescope').load_extension('project')
+
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
@@ -665,6 +669,6 @@ cmp.setup {
 
 
 -- Ahmet
-local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
-vim.cmd.source(vimrc)
+  local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
+  vim.cmd.source(vimrc)
 
