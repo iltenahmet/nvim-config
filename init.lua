@@ -158,7 +158,7 @@ require('lazy').setup({
     end,
   },
 
-  -- Ahmet
+  -- Ahmet -- gruvbox
     { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
 
   {
@@ -193,7 +193,7 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-	  -- Ahmet
+	  -- Ahmet -- telecope dependencies 
 	    'nvim-telescope/telescope-project.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
@@ -238,7 +238,7 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
---Ahmet
+--Ahmet - color scheme
   vim.o.background = "dark" -- or "light" for light mode
   -- Default options:
   require("gruvbox").setup({
@@ -270,12 +270,23 @@ require('lazy').setup({
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
 
+  -- Ahmet - tabstop
   vim.o.tabstop = 4
   vim.o.shiftwidth = 4
   vim.o.linebreak = true
 
-  --Ahmet 
-  vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
+  --Ahmet - keymaps 
+  --vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
+  local function next_window()
+    local win_count = vim.fn.winnr('$') -- get total number of windows
+    if win_count == 1 then
+        vim.cmd([[vertical split]]) -- create a new split if only one window exists
+    end
+    vim.cmd([[wincmd w]]) -- go to the next window
+  end
+
+  vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
+  vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -354,7 +365,7 @@ require('telescope').setup {
   },
 }
 
--- Ahmet
+-- Ahmet -- telescope extension
   require('telescope').load_extension('project')
 
 -- Enable telescope fzf native, if installed
@@ -668,7 +679,7 @@ cmp.setup {
 -- vim: ts=2 sts=2 sw=2 et
 
 
--- Ahmet
+-- Ahmet -- add vimrc 
   local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
   vim.cmd.source(vimrc)
 
