@@ -158,9 +158,6 @@ require('lazy').setup({
     end,
   },
 
-  -- Ahmet -- gruvbox
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -218,6 +215,10 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+
+  -- Ahmet -- additional plugins 
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+    {'akinsho/toggleterm.nvim', version = "*", config = true},
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -287,6 +288,11 @@ require('lazy').setup({
 
   vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
   vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
+
+  -- Ahmet -- toggle terminal
+  require("toggleterm").setup{}
+  vim.keymap.set('n', '<leader>tt', function() vim.cmd([[ToggleTerm]]) end, { desc = '[T]oggle [T]erminal' })
+  vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
