@@ -165,7 +165,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'gruvbox',
+        theme = 'onedark_dark',
         component_separators = '|',
         section_separators = '',
       },
@@ -217,8 +217,9 @@ require('lazy').setup({
   },
 
   -- Ahmet -- additional plugins 
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+    -- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
     {'akinsho/toggleterm.nvim', version = "*", config = true},
+    { "olimorris/onedarkpro.nvim", priority = 1000},
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -240,33 +241,8 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 --Ahmet - color scheme
-  vim.o.background = "dark" -- or "light" for light mode
-  -- Default options:
-  require("gruvbox").setup({
-    terminal_colors = true, -- add neovim terminal colors
-    undercurl = true,
-    underline = true,
-    bold = false,
-    italic = {
-      strings = true,
-      emphasis = true,
-      comments = true,
-      operators = false,
-      folds = true,
-    },
-    strikethrough = true,
-    invert_selection = false,
-    invert_signs = false,
-    invert_tabline = false,
-    invert_intend_guides = false,
-    inverse = true, -- invert background for search, diffs, statuslines and errors
-    contrast = "hard", -- can be "hard", "soft" or empty string
-    palette_overrides = {},
-    overrides = {},
-    dim_inactive = false,
-    transparent_mode = false,
-  })
-  vim.cmd([[colorscheme gruvbox]])
+  vim.o.background = "dark"
+  vim.cmd("colorscheme onedark_dark")
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
