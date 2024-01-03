@@ -165,7 +165,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark_dark',
+        theme = 'github_dark_default',
         component_separators = '|',
         section_separators = '',
       },
@@ -219,7 +219,8 @@ require('lazy').setup({
   -- Ahmet -- additional plugins 
     -- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
     {'akinsho/toggleterm.nvim', version = "*", config = true},
-    { "olimorris/onedarkpro.nvim", priority = 1000},
+    -- { "olimorris/onedarkpro.nvim", priority = 1000},
+    { 'projekt0n/github-nvim-theme', priority = 1000 },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -242,7 +243,7 @@ require('lazy').setup({
 
 --Ahmet - color scheme
   vim.o.background = "dark"
-  vim.cmd("colorscheme onedark_dark")
+  vim.cmd('colorscheme github_dark_default')
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
