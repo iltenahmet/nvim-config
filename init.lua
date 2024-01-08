@@ -221,6 +221,16 @@ require('lazy').setup({
     {'akinsho/toggleterm.nvim', version = "*", config = true},
     -- { "olimorris/onedarkpro.nvim", priority = 1000},
     { 'projekt0n/github-nvim-theme', priority = 1000 },
+  
+    {
+      "iamcco/markdown-preview.nvim",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      build = "cd app && npm install",
+      init = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+      ft = { "markdown" },
+    },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
