@@ -278,8 +278,9 @@ require('lazy').setup({
 
   -- Ahmet -- toggle terminal
   require("toggleterm").setup{}
-  vim.keymap.set('n', '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end, { desc = '[T]oggle [T]erminal' })
+  vim.keymap.set({'n', 't'}, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end, { desc = '[T]oggle [T]erminal' })
   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
+  vim.keymap.set({'n', 'i', 'o', 't'}, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
 
 -- Set highlight on search
 vim.o.hlsearch = false
