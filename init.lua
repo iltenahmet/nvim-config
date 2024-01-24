@@ -231,6 +231,10 @@ require('lazy').setup({
       end,
       ft = { "markdown" },
     },
+    {
+      "m4xshen/autoclose.nvim"
+    },
+
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -276,11 +280,14 @@ require('lazy').setup({
   vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
   vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
 
-  -- Ahmet -- toggle terminal
+  -- Ahmet - toggle terminal
   require("toggleterm").setup{}
   vim.keymap.set({'n', 't'}, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end, { desc = '[T]oggle [T]erminal' })
   vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
   vim.keymap.set({'n', 'i', 'o', 't'}, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
+
+  -- Ahmet - auto brackets
+  require("autoclose").setup()
 
 -- Set highlight on search
 vim.o.hlsearch = false
