@@ -236,7 +236,6 @@ require('lazy').setup({
       vim.cmd('colorscheme github_dark_default')
       end,
     },
-
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -248,6 +247,20 @@ require('lazy').setup({
     },
     {
       "m4xshen/autoclose.nvim"
+    },
+    {
+      "kdheepak/lazygit.nvim",
+      cmd = {
+          "LazyGit",
+          "LazyGitConfig",
+          "LazyGitCurrentFile",
+          "LazyGitFilter",
+          "LazyGitFilterCurrentFile",
+        },
+        -- optional for floating window border decoration
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
     },
 
 
