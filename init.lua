@@ -258,6 +258,8 @@ require('lazy').setup({
 --Ahmet - color scheme
   vim.o.background = "dark"
   vim.cmd('colorscheme github_dark_default')
+  -- Set GUI and terminal background color to none
+  vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
