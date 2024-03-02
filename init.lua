@@ -217,11 +217,26 @@ require('lazy').setup({
   },
 
   -- Ahmet -- additional plugins 
-    -- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
     {'akinsho/toggleterm.nvim', version = "*", config = true},
-    -- { "olimorris/onedarkpro.nvim", priority = 1000},
-    { 'projekt0n/github-nvim-theme', priority = 1000 },
-  
+    -- Ahmet -- color scheme install
+    -- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+    {
+      'projekt0n/github-nvim-theme',
+      lazy = false, -- make sure we load this during startup if it is your main colorscheme
+      priority = 1000, -- make sure to load this before all the other start plugins
+      config = function()
+      require('github-theme').setup({
+        options = {
+          transparent = true,
+          styles = {
+            comments = 'italic',
+          }
+        }
+      })
+      vim.cmd('colorscheme github_dark_default')
+      end,
+    },
+
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -258,8 +273,6 @@ require('lazy').setup({
 --Ahmet - color scheme
   vim.o.background = "dark"
   vim.cmd('colorscheme github_dark_default')
-  -- Set GUI and terminal background color to none
-  vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
