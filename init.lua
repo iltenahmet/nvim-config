@@ -627,6 +627,13 @@ local servers = {
   },
 }
 
+-- Ahmet
+require'lspconfig'.gdscript.setup{
+  on_attach = on_attach,
+  filetypes = { "gd", "gdscript", "gdscript3" },
+  -- root_dir = util.root_pattern("project.godot", ".git"),
+}
+
 -- Setup neovim lua configuration
 require('neodev').setup()
 
