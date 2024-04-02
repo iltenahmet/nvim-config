@@ -262,6 +262,13 @@ require('lazy').setup({
             "nvim-lua/plenary.nvim",
         },
     },
+    {
+      "zadirion/Unreal.nvim",
+      dependencies =
+      {
+          {"tpope/vim-dispatch"}
+      }
+    },
 
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
