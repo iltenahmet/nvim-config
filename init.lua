@@ -218,8 +218,36 @@ require('lazy').setup({
 
   -- Ahmet -- additional plugins 
     {'akinsho/toggleterm.nvim', version = "*", config = true},
-    -- Ahmet -- color scheme install
-    -- { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  -- Ahmet -- color scheme install
+    { "ellisonleao/gruvbox.nvim",
+      priority = 1000,
+      config = true,
+      opts = {
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+      },
+    },
+    --[[
     {
       'projekt0n/github-nvim-theme',
       lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -236,6 +264,7 @@ require('lazy').setup({
       vim.cmd('colorscheme github_dark_default')
       end,
     },
+    --]]
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -292,7 +321,8 @@ require('lazy').setup({
 
 --Ahmet - color scheme
   vim.o.background = "dark"
-  vim.cmd('colorscheme github_dark_default')
+  -- vim.cmd('colorscheme github_dark_default')
+  vim.cmd('colorscheme gruvbox')
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
@@ -634,12 +664,12 @@ local servers = {
   },
 }
 
--- Ahmet
-require'lspconfig'.gdscript.setup{
-  on_attach = on_attach,
-  filetypes = { "gd", "gdscript", "gdscript3" },
-  -- root_dir = util.root_pattern("project.godot", ".git"),
-}
+-- Ahmet - gdscript lsp
+  require'lspconfig'.gdscript.setup{
+    on_attach = on_attach,
+    filetypes = { "gd", "gdscript", "gdscript3" },
+    -- root_dir = util.root_pattern("project.godot", ".git"),
+  }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
