@@ -150,15 +150,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -227,7 +218,7 @@ require('lazy').setup({
         terminal_colors = true, -- add neovim terminal colors
         undercurl = true,
         underline = true,
-        bold = true,
+        bold = false,
         italic = {
           strings = true,
           emphasis = true,
