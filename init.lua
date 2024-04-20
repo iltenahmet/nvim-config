@@ -336,6 +336,7 @@ require('lazy').setup({
 
   vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
   vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
+  vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = 'E[x]plore' })
 
   -- Ahmet - toggle terminal
   require("toggleterm").setup{}
