@@ -310,7 +310,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 --Ahmet - color scheme
-  vim.o.background = "dark"
+  -- vim.o.background = "dark"
   -- vim.cmd('colorscheme github_dark_default')
   vim.cmd('colorscheme gruvbox')
 
