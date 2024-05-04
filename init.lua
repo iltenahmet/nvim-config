@@ -317,7 +317,7 @@ require('lazy').setup({
 
 --Ahmet - color scheme
   -- vim.o.background = "dark"
-  vim.cmd('colorscheme github_dark_dimmed')
+  vim.cmd('colorscheme github_dark_default')
   -- vim.cmd('colorscheme gruvbox')
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
