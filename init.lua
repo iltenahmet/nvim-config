@@ -256,6 +256,12 @@ require('lazy').setup({
       end,
     },
     {
+	  'Mofiqul/vscode.nvim',
+	},
+	{
+	  'rebelot/kanagawa.nvim',
+	},
+    {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
       build = "cd app && npm install",
@@ -311,8 +317,8 @@ require('lazy').setup({
 
 --Ahmet - color scheme
   -- vim.o.background = "dark"
-  -- vim.cmd('colorscheme github_dark_default')
-  vim.cmd('colorscheme gruvbox')
+  vim.cmd('colorscheme github_dark_dimmed')
+  -- vim.cmd('colorscheme gruvbox')
 
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
