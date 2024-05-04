@@ -246,7 +246,7 @@ require('lazy').setup({
       config = function()
       require('github-theme').setup({
         options = {
-          transparent = true,
+          -- transparent = true,
           styles = {
             comments = 'italic',
           }
