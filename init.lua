@@ -239,7 +239,6 @@ require('lazy').setup({
         transparent_mode = false,
       },
     },
-    --[[
     {
       'projekt0n/github-nvim-theme',
       lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -256,7 +255,6 @@ require('lazy').setup({
       vim.cmd('colorscheme github_dark_default')
       end,
     },
-    --]]
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
