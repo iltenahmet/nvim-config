@@ -34,7 +34,7 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 'tpope/vim-sleuth',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -323,10 +323,11 @@ require('lazy').setup({
   -- disables automatic conversion of spaces to tabs when pressing the tab key
   -- vim.o.noexpandtab = true
 
-  -- Ahmet - tabstop
+  -- Ahmet - tabstop, shiftwidth, spaces, etc.
   vim.o.tabstop = 4
   vim.o.shiftwidth = 4
   vim.o.linebreak = true
+  vim.o.expandtab = true
 
   --Ahmet - keymaps 
   --vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
