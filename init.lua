@@ -156,7 +156,6 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        -- theme = 'github_dark_default',
         theme = 'auto',
         component_separators = '|',
         section_separators = '',
@@ -183,7 +182,6 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
 	  -- Ahmet -- telecope dependencies 
-	    'nvim-telescope/telescope-project.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -209,58 +207,81 @@ require('lazy').setup({
   },
 
   -- Ahmet -- additional plugins 
-    {'akinsho/toggleterm.nvim', version = "*", config = true},
+  {'akinsho/toggleterm.nvim', version = "*", config = true},
   -- Ahmet -- color scheme install
-    { "ellisonleao/gruvbox.nvim",
-      priority = 1000,
-      config = true,
-      opts = {
-        terminal_colors = true, -- add neovim terminal colors
-        undercurl = true,
-        underline = true,
-        bold = false,
-        italic = {
-          strings = true,
-          emphasis = true,
-          comments = true,
-          operators = false,
-          folds = true,
-        },
-        strikethrough = true,
-        invert_selection = false,
-        invert_signs = false,
-        invert_tabline = false,
-        invert_intend_guides = false,
-        inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "hard", -- can be "hard", "soft" or empty string
-        palette_overrides = {},
-        overrides = {},
-        dim_inactive = false,
-        transparent_mode = false,
+  { "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      terminal_colors = true, -- add neovim terminal colors
+      undercurl = true,
+      underline = true,
+      bold = false,
+      italic = {
+        strings = true,
+        emphasis = true,
+        comments = true,
+        operators = false,
+        folds = true,
       },
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true, -- invert background for search, diffs, statuslines and errors
+      contrast = "hard", -- can be "hard", "soft" or empty string
+      palette_overrides = {},
+      overrides = {},
+      dim_inactive = false,
+      transparent_mode = false,
     },
-    {
-      'projekt0n/github-nvim-theme',
-      lazy = false, -- make sure we load this during startup if it is your main colorscheme
-      priority = 1000, -- make sure to load this before all the other start plugins
-      config = function()
-      require('github-theme').setup({
-        options = {
-          transparent = true,
-          styles = {
-            comments = 'italic',
-          }
+  },
+  {
+    'projekt0n/github-nvim-theme',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+    require('github-theme').setup({
+      options = {
+        transparent = false,
+        styles = {
+          comments = 'italic',
         }
-      })
-      vim.cmd('colorscheme github_dark_default')
+      }
+    })
+    end,
+  },
+  {
+    'Mofiqul/vscode.nvim',
+  },
+  {
+    'rebelot/kanagawa.nvim',
+    opts = {
+      compile = false,             -- enable compiling the colorscheme
+      undercurl = true,            -- enable undercurls
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true},
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,         -- do not set background color
+      dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
+      terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+      colors = {                   -- add/modify theme and palette colors
+          palette = {},
+          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+      },
+      overrides = function(colors) -- add/modify highlights
+          return {}
       end,
-    },
-    {
-	  'Mofiqul/vscode.nvim',
-	},
-	{
-	  'rebelot/kanagawa.nvim',
-	},
+      theme = "wave",              -- Load "wave" theme when 'background' option is not set
+      background = {               -- map the value of 'background' option to a theme
+          dark = "wave",           -- try "dragon" !
+          light = "lotus"
+      }
+    }
+  },
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -315,19 +336,15 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
---Ahmet - color scheme
+--Ahmet -- color scheme
   -- vim.o.background = "dark"
-  -- vim.cmd('colorscheme github_dark')
-  vim.cmd('colorscheme gruvbox')
-
-  -- disables automatic conversion of spaces to tabs when pressing the tab key
-  -- vim.o.noexpandtab = true
+  vim.cmd('colorscheme kanagawa')
 
   -- Ahmet - tabstop, shiftwidth, spaces, etc.
   vim.o.tabstop = 4
   vim.o.shiftwidth = 4
   vim.o.linebreak = true
-  vim.o.expandtab = true
+  vim.o.expandtab = true -- automatic conversion of tab character to spaces
 
   --Ahmet - keymaps 
   --vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
@@ -338,8 +355,8 @@ require('lazy').setup({
     end
     vim.cmd([[wincmd w]]) -- go to the next window
   end
-
   vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
+
   vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
   vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = 'E[x]plore' })
 
@@ -428,9 +445,6 @@ require('telescope').setup {
     },
   },
 }
-
--- Ahmet -- telescope extension
-  require('telescope').load_extension('project')
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -664,7 +678,6 @@ local servers = {
   require'lspconfig'.gdscript.setup{
     on_attach = on_attach,
     filetypes = { "gd", "gdscript", "gdscript3" },
-    -- root_dir = util.root_pattern("project.godot", ".git"),
   }
 
 -- Setup neovim lua configuration
