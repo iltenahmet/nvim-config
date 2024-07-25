@@ -162,8 +162,7 @@ require('lazy').setup({
       },
     },
   },
-
-  {
+{
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
@@ -181,7 +180,7 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-	  -- Ahmet -- telecope dependencies 
+      -- Ahmet -- telecope dependencies 
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -208,6 +207,44 @@ require('lazy').setup({
 
   -- Ahmet -- additional plugins 
   {'akinsho/toggleterm.nvim', version = "*", config = true},
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "m4xshen/autoclose.nvim"
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+        "LazyGit",
+        "LazyGitConfig",
+        "LazyGitCurrentFile",
+        "LazyGitFilter",
+        "LazyGitFilterCurrentFile",
+      },
+      -- optional for floating window border decoration
+      dependencies = {
+          "nvim-lua/plenary.nvim",
+      },
+  },
+  {
+    "zadirion/Unreal.nvim",
+    dependencies =
+    {
+        {"tpope/vim-dispatch"}
+    }
+  },
+
   -- Ahmet -- color scheme install
   { "ellisonleao/gruvbox.nvim",
     priority = 1000,
@@ -282,39 +319,7 @@ require('lazy').setup({
       }
     }
   },
-    {
-      "iamcco/markdown-preview.nvim",
-      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-      build = "cd app && npm install",
-      init = function()
-        vim.g.mkdp_filetypes = { "markdown" }
-      end,
-      ft = { "markdown" },
-    },
-    {
-      "m4xshen/autoclose.nvim"
-    },
-    {
-      "kdheepak/lazygit.nvim",
-      cmd = {
-          "LazyGit",
-          "LazyGitConfig",
-          "LazyGitCurrentFile",
-          "LazyGitFilter",
-          "LazyGitFilterCurrentFile",
-        },
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-    },
-    {
-      "zadirion/Unreal.nvim",
-      dependencies =
-      {
-          {"tpope/vim-dispatch"}
-      }
-    },
+
 
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -336,38 +341,52 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
---Ahmet -- color scheme
-  -- vim.o.background = "dark"
-  vim.cmd('colorscheme kanagawa')
+--Ahmet -- set color scheme
+-- vim.o.background = "dark"
+vim.cmd('colorscheme kanagawa')
 
-  -- Ahmet - tabstop, shiftwidth, spaces, etc.
-  vim.o.tabstop = 4
-  vim.o.shiftwidth = 4
-  vim.o.linebreak = true
-  vim.o.expandtab = true -- automatic conversion of tab character to spaces
+-- Ahmet - tabstop, shiftwidth, spaces, etc.
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.linebreak = true
+vim.o.expandtab = true -- automatic conversion of tab character to spaces
 
-  --Ahmet - keymaps 
-  --vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
-  local function next_window()
-    local win_count = vim.fn.winnr('$') -- get total number of windows
-    if win_count == 1 then
-        vim.cmd([[vertical split]]) -- create a new split if only one window exists
-    end
-    vim.cmd([[wincmd w]]) -- go to the next window
+--Ahmet - keymaps 
+--vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
+local function next_window()
+  local win_count = vim.fn.winnr('$') -- get total number of windows
+  if win_count == 1 then
+      vim.cmd([[vertical split]]) -- create a new split if only one window exists
   end
-  vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
+  vim.cmd([[wincmd w]]) -- go to the next window
+end
+vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
 
-  vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
-  vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = 'E[x]plore' })
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
+vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = 'E[x]plore' })
 
-  -- Ahmet - toggle terminal
-  require("toggleterm").setup{}
-  vim.keymap.set({'n', 't'}, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end, { desc = '[T]oggle [T]erminal' })
-  vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
-  vim.keymap.set({'n', 'i', 'o', 't'}, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
+-- Ahmet - toggle terminal
+require("toggleterm").setup{}
+vim.keymap.set({'n', 't'}, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end, { desc = '[T]oggle [T]erminal' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
+vim.keymap.set({'n', 'i', 'o', 't'}, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
 
-  -- Ahmet - auto brackets
-  require("autoclose").setup()
+-- Ahmet - auto brackets
+require("autoclose").setup()
+
+-- Ahmet - folding setup ufo
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+require('ufo').setup({
+    provider_selector = function(bufnr, filetype, buftype)
+        return {'treesitter', 'indent'}
+    end
+})
 
 -- Set highlight on search
 vim.o.hlsearch = false
