@@ -319,8 +319,9 @@ require('lazy').setup({
       }
     }
   },
-
-
+  { "rose-pine/neovim",
+    name = "rose-pine",
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -343,7 +344,7 @@ require('lazy').setup({
 
 --Ahmet -- set color scheme
 -- vim.o.background = "dark"
-vim.cmd('colorscheme kanagawa')
+vim.cmd('colorscheme gruvbox')
 
 -- Ahmet - tabstop, shiftwidth, spaces, etc.
 vim.o.tabstop = 4
