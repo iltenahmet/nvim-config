@@ -162,13 +162,17 @@ require('lazy').setup({
       },
     },
   },
-{
+  {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = {
+      scope = {
+        enabled = false,
+      }
+    },
   },
 
   -- "gc" to comment visual regions/lines
@@ -243,6 +247,23 @@ require('lazy').setup({
     {
         {"tpope/vim-dispatch"}
     }
+  },
+  {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    dependencies = {
+        'nvimtools/hydra.nvim',
+    },
+    opts = {},
+    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+    keys = {
+      {
+        mode = { 'v', 'n' },
+        '<Leader>c',
+        '<cmd>MCstart<cr>',
+        desc = 'Multi [C]ursor',
+      },
+    },
   },
 
   -- Ahmet -- color scheme install
@@ -341,6 +362,7 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+
 
 --Ahmet -- set color scheme
 -- vim.o.background = "dark"
@@ -620,7 +642,7 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>l', vim.lsp.buf.code_action, '[L]SP: Code Action')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -651,7 +673,7 @@ end
 -- { "<leader>", group = "VISUAL <leader>", mode = "v" },
 -- document existing key chains
 require('which-key').add {
-  {'<leader>c', group = '[C]ode' },
+  -- {'<leader>c', group = '[C]ode' },
   --['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   {'<leader>g', group = '[G]it'},
   {'<leader>h', group = 'Git [H]unk'},
