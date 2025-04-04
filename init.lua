@@ -390,7 +390,13 @@ local function next_window()
 end
 vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
 
-vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
+-- https://www.reddit.com/r/neovim/comments/nspg8o/telescope_find_files_not_showing_hidden_files/
+-- https://github.com/skbolton/titan/blob/4d0d31cc6439a7565523b1018bec54e3e8bc502c/nvim/nvim/lua/mappings/filesystem.lua#L6
+vim.keymap.set('n', '<leader>f', function()
+  require('telescope.builtin').find_files({
+    find_command = {'rg', '--files', '--hidden', '-g', '!.git'}
+  })
+end, { desc = 'Search [F]iles' })
 vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = 'E[x]plore' })
 
 -- Ahmet - toggle terminal
