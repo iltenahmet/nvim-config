@@ -159,6 +159,7 @@ require('lazy').setup({
         theme = 'auto',
         component_separators = '|',
         section_separators = '',
+        path = 1,
       },
     },
   },
@@ -369,11 +370,11 @@ require('lazy').setup({
 
 --Ahmet -- set color scheme
 -- vim.o.background = "dark"
-vim.cmd('colorscheme rose-pine-main')
+vim.cmd('colorscheme gruvbox')
 
 -- Ahmet - tabstop, shiftwidth, spaces, etc.
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.o.linebreak = true
 vim.o.expandtab = true -- automatic conversion of tab character to spaces
 
@@ -418,7 +419,9 @@ require('ufo').setup({
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.number = true
+-- vim.wo.number = true
+-- Set relative line number to true
+vim.wo.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
