@@ -211,6 +211,7 @@ require('lazy').setup({
   },
 
   -- Ahmet -- additional plugins 
+  {'github/copilot.vim'},
   {'akinsho/toggleterm.nvim', version = "*", config = true},
   {
     'kevinhwang91/nvim-ufo',
@@ -807,9 +808,4 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
-
--- Ahmet -- add vimrc 
-  local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
-  vim.cmd.source(vimrc)
 
