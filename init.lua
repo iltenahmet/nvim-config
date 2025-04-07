@@ -211,7 +211,36 @@ require('lazy').setup({
   },
 
   -- Ahmet -- additional plugins 
-  {'github/copilot.vim'},
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    event = "BufReadPost",
+    opts = {
+      suggestion = {
+        enabled = not vim.g.ai_cmp,
+        auto_trigger = true,
+        hide_during_completion = vim.g.ai_cmp,
+        keymap = {
+          accept = "<F4>",
+        },
+      },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "zbirenbaum/copilot.lua"  }, -- or "github/copilot.vim"
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {},
+  },
   {'akinsho/toggleterm.nvim', version = "*", config = true},
   {
     'kevinhwang91/nvim-ufo',
@@ -421,6 +450,9 @@ require('ufo').setup({
         return {'treesitter', 'indent'}
     end
 })
+
+-- Ahmet - copilot chat
+vim.keymap.set('n', '<leader>p', function() vim.cmd([[CopilotChatOpen]]) end, { desc = '[P]rompt Copilot' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
