@@ -418,6 +418,8 @@ local function next_window()
   vim.cmd([[wincmd w]]) -- go to the next window
 end
 vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
+vim.keymap.set('n', '<leader>v', '<C-w>', { desc = '[V]iews' });
+
 
 -- https://www.reddit.com/r/neovim/comments/nspg8o/telescope_find_files_not_showing_hidden_files/
 -- https://github.com/skbolton/titan/blob/4d0d31cc6439a7565523b1018bec54e3e8bc502c/nvim/nvim/lua/mappings/filesystem.lua#L6
@@ -728,7 +730,8 @@ require('which-key').add {
   {'<leader>t', group = '[T]oggle'},
   {'<leader>w', group = '[W]orkspace'},
   {'<leader>', group = 'VISUAL <leader>', mode = "v" },
-  {'<leader>h', group = 'Git [H]unk', mode = "v" }
+  {'<leader>h', group = 'Git [H]unk', mode = "v" },
+  { "<leader>v", proxy = "<c-w>"},
 }
 --
 -- mason-lspconfig requires that these setup functions are called in this order
