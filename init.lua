@@ -407,6 +407,7 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.linebreak = true
 vim.o.expandtab = true -- automatic conversion of tab character to spaces
+vim.o.colorcolumn = '80'
 
 --Ahmet - keymaps 
 --vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
