@@ -298,6 +298,10 @@ require('lazy').setup({
   },
 
   -- Ahmet -- color scheme install
+  --
+  {
+   "loctvl842/monokai-pro.nvim",
+  },
   { "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
@@ -323,7 +327,7 @@ require('lazy').setup({
       palette_overrides = {},
       overrides = {},
       dim_inactive = false,
-      transparent_mode = false,
+      transparent_mode = true,
     },
   },
   {
