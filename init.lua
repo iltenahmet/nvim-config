@@ -299,6 +299,14 @@ require('lazy').setup({
 
   -- Ahmet -- color scheme install
   {
+    "polirritmico/monokai-nightasty.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      dark_style_background = "transparent"
+    }
+  },
+  {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
@@ -524,7 +532,7 @@ require("rose-pine").setup({
         -- end
     end,
 })
-vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme monokai-nightasty')
 
 -- Ahmet - tabstop, shiftwidth, spaces, etc.
 vim.o.tabstop = 2
