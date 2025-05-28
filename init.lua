@@ -73,7 +73,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = { icons = {mappings = false} } },
+  { 'folke/which-key.nvim',  opts = { icons = { mappings = false } } },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -171,7 +171,7 @@ require('lazy').setup({
     main = 'ibl',
     opts = {
       scope = {
-        enabled = false,
+        enabled = true,
       }
     },
   },
@@ -185,7 +185,7 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      -- Ahmet -- telecope dependencies 
+      -- Ahmet -- telecope dependencies
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
       -- Only load if `make` is available. Make sure you have the system
       -- requirements installed.
@@ -210,7 +210,7 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- Ahmet -- additional plugins 
+  -- Ahmet -- additional plugins
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -235,13 +235,13 @@ require('lazy').setup({
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "zbirenbaum/copilot.lua"  }, -- or "github/copilot.vim"
+      { "zbirenbaum/copilot.lua" },                   -- or "github/copilot.vim"
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
-    build = "make tiktoken", -- Only on MacOS or Linux
+    build = "make tiktoken",                          -- Only on MacOS or Linux
     opts = {},
   },
-  {'akinsho/toggleterm.nvim', version = "*", config = true},
+  { 'akinsho/toggleterm.nvim', version = "*", config = true },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
@@ -261,29 +261,29 @@ require('lazy').setup({
   {
     "kdheepak/lazygit.nvim",
     cmd = {
-        "LazyGit",
-        "LazyGitConfig",
-        "LazyGitCurrentFile",
-        "LazyGitFilter",
-        "LazyGitFilterCurrentFile",
-      },
-      -- optional for floating window border decoration
-      dependencies = {
-          "nvim-lua/plenary.nvim",
-      },
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
   {
     "zadirion/Unreal.nvim",
     dependencies =
     {
-        {"tpope/vim-dispatch"}
+      { "tpope/vim-dispatch" }
     }
   },
   {
     "smoka7/multicursors.nvim",
     event = "VeryLazy",
     dependencies = {
-        'nvimtools/hydra.nvim',
+      'nvimtools/hydra.nvim',
     },
     opts = {},
     cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
@@ -298,11 +298,8 @@ require('lazy').setup({
   },
 
   -- Ahmet -- color scheme install
-  --
   {
-   "loctvl842/monokai-pro.nvim",
-  },
-  { "ellisonleao/gruvbox.nvim",
+    "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
     opts = {
@@ -322,7 +319,7 @@ require('lazy').setup({
       invert_signs = false,
       invert_tabline = false,
       invert_intend_guides = false,
-      inverse = true, -- invert background for search, diffs, statuslines and errors
+      inverse = true,    -- invert background for search, diffs, statuslines and errors
       contrast = "hard", -- can be "hard", "soft" or empty string
       palette_overrides = {},
       overrides = {},
@@ -332,17 +329,17 @@ require('lazy').setup({
   },
   {
     'projekt0n/github-nvim-theme',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-    require('github-theme').setup({
-      options = {
-        transparent = false,
-        styles = {
-          comments = 'italic',
+      require('github-theme').setup({
+        options = {
+          transparent = false,
+          styles = {
+            comments = 'italic',
+          }
         }
-      }
-    })
+      })
     end,
   },
   {
@@ -351,35 +348,36 @@ require('lazy').setup({
   {
     'rebelot/kanagawa.nvim',
     opts = {
-      compile = false,             -- enable compiling the colorscheme
-      undercurl = true,            -- enable undercurls
+      compile = false,  -- enable compiling the colorscheme
+      undercurl = true, -- enable undercurls
       commentStyle = { italic = true },
       functionStyle = {},
-      keywordStyle = { italic = true},
+      keywordStyle = { italic = true },
       statementStyle = { bold = true },
       typeStyle = {},
-      transparent = false,         -- do not set background color
-      dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
-      terminalColors = true,       -- define vim.g.terminal_color_{0,17}
-      colors = {                   -- add/modify theme and palette colors
-          palette = {},
-          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+      transparent = true,   -- do not set background color
+      dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+      terminalColors = true, -- define vim.g.terminal_color_{0,17}
+      colors = {             -- add/modify theme and palette colors
+        palette = {},
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
       },
       overrides = function(colors) -- add/modify highlights
-          return {}
+        return {}
       end,
-      theme = "wave",              -- Load "wave" theme when 'background' option is not set
-      background = {               -- map the value of 'background' option to a theme
-          dark = "wave",           -- try "dragon" !
-          light = "lotus"
+      theme = "dragon",  -- Load "wave" theme when 'background' option is not set
+      background = {   -- map the value of 'background' option to a theme
+        dark = "wave", -- try "dragon" !
+        light = "lotus"
       }
     }
   },
-  { "rose-pine/neovim",
+  {
+    "rose-pine/neovim",
     name = "rose-pine",
   },
   {
-    "EdenEast/nightfox.nvim"
+    "EdenEast/nightfox.nvim",
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -403,7 +401,129 @@ require('lazy').setup({
 
 
 --Ahmet -- set color scheme
--- vim.o.background = "dark"
+--vim.o.background = "dark"
+require('nightfox').setup({
+  options = {
+    -- Compiled file's destination location
+    compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+    compile_file_suffix = "_compiled", -- Compiled file suffix
+    transparent = true,     -- Disable setting background
+    terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false,    -- Non focused panes set to alternative background
+    module_default = true,   -- Default enable value for modules
+    colorblind = {
+      enable = false,        -- Enable colorblind support
+      simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
+      severity = {
+        protan = 0,          -- Severity [0,1] for protan (red)
+        deutan = 0,          -- Severity [0,1] for deutan (green)
+        tritan = 0,          -- Severity [0,1] for tritan (blue)
+      },
+    },
+    styles = {               -- Style to be applied to different syntax groups
+      comments = "NONE",     -- Value is any valid attr-list value `:help attr-list`
+      conditionals = "NONE",
+      constants = "NONE",
+      functions = "NONE",
+      keywords = "NONE",
+      numbers = "NONE",
+      operators = "NONE",
+      strings = "NONE",
+      types = "NONE",
+      variables = "NONE",
+    },
+    inverse = {             -- Inverse highlight for different types
+      match_paren = false,
+      visual = false,
+      search = false,
+    },
+    modules = {             -- List of various plugins and additional options
+      -- ...
+    },
+  },
+  palettes = {},
+  specs = {},
+  groups = {},
+})
+
+require("rose-pine").setup({
+    variant = "auto", -- auto, main, moon, or dawn
+    dark_variant = "main", -- main, moon, or dawn
+    dim_inactive_windows = false,
+    extend_background_behind_borders = true,
+
+    enable = {
+        terminal = true,
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        migrations = true, -- Handle deprecated options automatically
+    },
+
+    styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
+    },
+
+    groups = {
+        border = "muted",
+        link = "iris",
+        panel = "surface",
+
+        error = "love",
+        hint = "iris",
+        info = "foam",
+        note = "pine",
+        todo = "rose",
+        warn = "gold",
+
+        git_add = "foam",
+        git_change = "rose",
+        git_delete = "love",
+        git_dirty = "rose",
+        git_ignore = "muted",
+        git_merge = "iris",
+        git_rename = "pine",
+        git_stage = "iris",
+        git_text = "rose",
+        git_untracked = "subtle",
+
+        h1 = "iris",
+        h2 = "foam",
+        h3 = "rose",
+        h4 = "gold",
+        h5 = "pine",
+        h6 = "foam",
+    },
+
+    palette = {
+        -- Override the builtin palette per variant
+        -- moon = {
+        --     base = '#18191a',
+        --     overlay = '#363738',
+        -- },
+    },
+
+	-- NOTE: Highlight groups are extended (merged) by default. Disable this
+	-- per group via `inherit = false`
+    highlight_groups = {
+        -- Comment = { fg = "foam" },
+        -- StatusLine = { fg = "love", bg = "love", blend = 15 },
+        -- VertSplit = { fg = "muted", bg = "muted" },
+        -- Visual = { fg = "base", bg = "text", inherit = false },
+    },
+
+    before_highlight = function(group, highlight, palette)
+        -- Disable all undercurls
+        -- if highlight.undercurl then
+        --     highlight.undercurl = false
+        -- end
+        --
+        -- Change palette colour
+        -- if highlight.fg == palette.pine then
+        --     highlight.fg = palette.foam
+        -- end
+    end,
+})
 vim.cmd('colorscheme gruvbox')
 
 -- Ahmet - tabstop, shiftwidth, spaces, etc.
@@ -413,14 +533,14 @@ vim.o.linebreak = true
 vim.o.expandtab = true -- automatic conversion of tab character to spaces
 vim.o.colorcolumn = '80'
 
---Ahmet - keymaps 
+--Ahmet - keymaps
 --vim.keymap.set('n','<leader>n','<C-w><C-w>', {desc = '[N]ext Window'})
 local function next_window()
   local win_count = vim.fn.winnr('$') -- get total number of windows
   if win_count == 1 then
-      vim.cmd([[vertical split]]) -- create a new split if only one window exists
+    vim.cmd([[vertical split]])       -- create a new split if only one window exists
   end
-  vim.cmd([[wincmd w]]) -- go to the next window
+  vim.cmd([[wincmd w]])               -- go to the next window
 end
 vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
 
@@ -429,32 +549,33 @@ vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
 -- https://github.com/skbolton/titan/blob/4d0d31cc6439a7565523b1018bec54e3e8bc502c/nvim/nvim/lua/mappings/filesystem.lua#L6
 vim.keymap.set('n', '<leader>f', function()
   require('telescope.builtin').find_files({
-    find_command = {'rg', '--files', '--hidden', '-g', '!.git'}
+    find_command = { 'rg', '--files', '--hidden', '-g', '!.git' }
   })
 end, { desc = 'Search [F]iles' })
 vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = 'E[x]plore' })
 
 -- Ahmet - toggle terminal
-require("toggleterm").setup{}
-vim.keymap.set({'n', 't'}, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end, { desc = '[T]oggle [T]erminal' })
+require("toggleterm").setup {}
+vim.keymap.set({ 'n', 't' }, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end,
+  { desc = '[T]oggle [T]erminal' })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
-vim.keymap.set({'n', 'i', 'o', 't'}, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
+vim.keymap.set({ 'n', 'i', 'o', 't' }, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
 
 -- Ahmet - auto brackets
 require("autoclose").setup()
 
 -- Ahmet - folding setup ufo
-vim.o.foldcolumn = '0' -- '1' is also good 
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldcolumn = '0' -- '1' is also good
+vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 require('ufo').setup({
-    provider_selector = function(bufnr, filetype, buftype)
-        return {'treesitter', 'indent'}
-    end
+  provider_selector = function(bufnr, filetype, buftype)
+    return { 'treesitter', 'indent' }
+  end
 })
 
 -- Ahmet - copilot chat
@@ -727,15 +848,15 @@ end
 require('which-key').add {
   -- {'<leader>c', group = '[C]ode' },
   --['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  {'<leader>g', group = '[G]it'},
-  {'<leader>h', group = 'Git [H]unk'},
-  {'<leader>r', group = '[R]ename'},
-  {'<leader>s', group = '[S]earch'},
-  {'<leader>t', group = '[T]oggle'},
-  {'<leader><S-w>', group = '[W]orkspace'},
-  {'<leader>', group = 'VISUAL <leader>', mode = "v" },
-  {'<leader>h', group = 'Git [H]unk', mode = "v" },
-  { "<leader>w", proxy = "<c-w>"},
+  { '<leader>g',     group = '[G]it' },
+  { '<leader>h',     group = 'Git [H]unk' },
+  { '<leader>r',     group = '[R]ename' },
+  { '<leader>s',     group = '[S]earch' },
+  { '<leader>t',     group = '[T]oggle' },
+  { '<leader><S-w>', group = '[W]orkspace' },
+  { '<leader>',      group = 'VISUAL <leader>', mode = "v" },
+  { '<leader>h',     group = 'Git [H]unk',      mode = "v" },
+  { "<leader>w",     proxy = "<c-w>" },
 }
 --
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -770,10 +891,10 @@ local servers = {
 }
 
 -- Ahmet - gdscript lsp
-  require'lspconfig'.gdscript.setup{
-    on_attach = on_attach,
-    filetypes = { "gd", "gdscript", "gdscript3" },
-  }
+require 'lspconfig'.gdscript.setup {
+  on_attach = on_attach,
+  filetypes = { "gd", "gdscript", "gdscript3" },
+}
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -854,4 +975,3 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-

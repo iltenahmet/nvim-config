@@ -26,19 +26,31 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+
     require('mason-nvim-dap').setup {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
-      automatic_setup = true,
+      -- A list of adapters to install if they're not already installed.
+      -- This setting has no relation with the `automatic_installation` setting.
+      ensure_installed = { 'chrome', 'node2' },
 
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
-      handlers = {},
+      -- NOTE: this is left here for future porting in case needed
+      -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
+      -- This setting has no relation with the `ensure_installed` setting.
+      -- Can either be:
+      --   - false: Daps are not automatically installed.
+      --   - true: All adapters set up via dap are automatically installed.
+      --   - { exclude: string[] }: All adapters set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
+      --       Example: automatic_installation = { exclude = { "python", "delve" } }
+      automatic_installation = false,
 
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
-      ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
+      handlers = {
+        function(source_name, adapter)
+          require('mason-nvim-dap').default_setup(source_name, adapter)
+
+          -- alias node2 → node so the built-in "Attach to Node" config works
+          if source_name == 'node2' then
+            dap.adapters.node = dap.adapters.node2
+          end
+        end,
       },
     }
 
@@ -55,23 +67,74 @@ return {
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
+        element = "repl",
+        enabled = true,
         icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
+          disconnect = "",
+          pause = "",
+          play = "",
+          run_last = "",
+          step_back = "",
+          step_into = "",
+          step_out = "",
+          step_over = "",
+          terminate = ""
+        }
       },
+      element_mappings = {},
+      expand_lines = true,
+      floating = {
+        border = "single",
+        mappings = {
+          close = { "q", "<Esc>" }
+        }
+      },
+      force_buffers = true,
+      icons = {
+        collapsed = "",
+        current_frame = "",
+        expanded = ""
+      },
+      layouts = { {
+        elements = { {
+          id = "scopes",
+          size = 0.25
+        }, {
+          id = "breakpoints",
+          size = 0.25
+        }, {
+          id = "stacks",
+          size = 0.25
+        }, {
+          id = "watches",
+          size = 0.25
+        } },
+        position = "left",
+        size = 40
+      }, {
+        elements = { {
+          id = "repl",
+          size = 0.5
+        }, {
+          id = "console",
+          size = 0.5
+        } },
+        position = "bottom",
+        size = 10
+      } },
+      mappings = {
+        edit = "e",
+        expand = { "<CR>", "<2-LeftMouse>" },
+        open = "o",
+        remove = "d",
+        repl = "r",
+        toggle = "t"
+      },
+      render = {
+        indent = 1,
+        max_value_lines = 100
+      }
     }
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
@@ -86,11 +149,11 @@ return {
     require('dap-go').setup()
 
     --if not vim.fn.has('macunix') then
-      dap.adapters.lldb = {
-        type = 'executable',
-        command = 'C:\\Program Files\\LLVM\\bin\\lldb-vscode.exe',
-        name = 'lldb'
-      }
+    dap.adapters.lldb = {
+      type = 'executable',
+      command = 'C:\\Program Files\\LLVM\\bin\\lldb-vscode.exe',
+      name = 'lldb'
+    }
     --end
 
     dap.configurations.cpp = {
@@ -103,7 +166,7 @@ return {
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
-        args = {"< test.txt", " > out.txt"},
+        args = { "< test.txt", " > out.txt" },
 
         -- 💀
         -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
@@ -115,6 +178,5 @@ return {
         -- runInTerminal = false,
       },
     }
-
   end,
 }
