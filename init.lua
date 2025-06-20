@@ -212,6 +212,9 @@ require('lazy').setup({
 
   -- Ahmet -- additional plugins
   {
+    'simrat39/symbols-outline.nvim',
+  },
+  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     build = ":Copilot auth",
@@ -532,7 +535,10 @@ require("rose-pine").setup({
         -- end
     end,
 })
-vim.cmd('colorscheme monokai-nightasty')
+vim.cmd('colorscheme gruvbox')
+
+-- Ahmet - symbols outline
+require("symbols-outline").setup()
 
 -- Ahmet - tabstop, shiftwidth, spaces, etc.
 vim.o.tabstop = 2
@@ -593,7 +599,7 @@ vim.keymap.set('n', '<leader>p', function() vim.cmd([[CopilotChatOpen]]) end, { 
 vim.o.hlsearch = false
 
 -- Make line numbers default
--- vim.wo.number = true
+vim.wo.number = true
 -- Set relative line number to true
 vim.wo.relativenumber = true
 
