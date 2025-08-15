@@ -214,6 +214,7 @@ require('lazy').setup({
   {
     'simrat39/symbols-outline.nvim',
   },
+  --[[
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
@@ -244,6 +245,7 @@ require('lazy').setup({
     build = "make tiktoken",                          -- Only on MacOS or Linux
     opts = {},
   },
+  ]]
   { 'akinsho/toggleterm.nvim', version = "*", config = true },
   {
     'kevinhwang91/nvim-ufo',
@@ -593,7 +595,7 @@ require('ufo').setup({
 })
 
 -- Ahmet - copilot chat
-vim.keymap.set('n', '<leader>p', function() vim.cmd([[CopilotChatOpen]]) end, { desc = '[P]rompt Copilot' })
+-- vim.keymap.set('n', '<leader>p', function() vim.cmd([[CopilotChatOpen]]) end, { desc = '[P]rompt Copilot' })
 
 -- Set highlight on search
 vim.o.hlsearch = false
