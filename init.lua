@@ -312,6 +312,62 @@ require('lazy').setup({
     }
   },
   {
+    'loctvl842/monokai-pro.nvim',
+    config = function()
+      require("monokai-pro").setup({
+      transparent_background = false,
+      terminal_colors = true,
+      devicons = true, -- highlight the icons of `nvim-web-devicons`
+      styles = {
+        comment = { italic = true },
+        keyword = { italic = true }, -- any other keyword
+        type = { italic = true }, -- (preferred) int, long, char, etc
+        storageclass = { italic = true }, -- static, register, volatile, etc
+        structure = { italic = true }, -- struct, union, enum, etc
+        parameter = { italic = true }, -- parameter pass in function
+        annotation = { italic = true },
+        tag_attribute = { italic = true }, -- attribute of tag in reactjs
+      },
+      filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
+      -- Enable this will disable filter option
+      day_night = {
+        enable = false, -- turn off by default
+        day_filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
+        night_filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
+      },
+      inc_search = "background", -- underline | background
+      background_clear = {
+        -- "float_win",
+        "toggleterm",
+        "telescope",
+        -- "which-key",
+        "renamer",
+        "notify",
+        -- "nvim-tree",
+        -- "neo-tree",
+        -- "bufferline", -- better used if background of `neo-tree` or `nvim-tree` is cleared
+      },-- "float_win", "toggleterm", "telescope", "which-key", "renamer", "neo-tree", "nvim-tree", "bufferline"
+      plugins = {
+        bufferline = {
+          underline_selected = false,
+          underline_visible = false,
+        },
+        indent_blankline = {
+          context_highlight = "pro", -- default | pro
+          context_start_underline = false,
+        },
+      },
+      -- Fix indent-blankline visibility - https://github.com/lukas-reineke/indent-blankline.nvim/issues/963
+      override = function(c)
+        return {
+          IblIndent = { fg = c.base.dimmed4 },
+          IblScope = { fg = c.base.dimmed2 },
+        }
+      end,
+    })
+    end,
+  },
+  {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = true,
@@ -537,7 +593,6 @@ require("rose-pine").setup({
         -- end
     end,
 })
-vim.cmd('colorscheme gruvbox')
 
 -- Ahmet - symbols outline
 require("symbols-outline").setup()
@@ -988,6 +1043,8 @@ cmp.setup {
     { name = 'path' },
   },
 }
+
+vim.cmd.colorscheme("monokai-pro-classic")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
