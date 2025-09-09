@@ -214,6 +214,10 @@ require('lazy').setup({
   {
     'simrat39/symbols-outline.nvim',
   },
+  -- shows function header/signature + more context at top
+  {
+    'wellle/context.vim',
+  },
   --[[
   {
     "zbirenbaum/copilot.lua",
