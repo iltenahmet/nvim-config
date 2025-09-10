@@ -397,7 +397,7 @@ require('lazy').setup({
       palette_overrides = {},
       overrides = {},
       dim_inactive = false,
-      transparent_mode = true,
+      transparent_mode = false,
     },
   },
   {
@@ -428,7 +428,7 @@ require('lazy').setup({
       keywordStyle = { italic = true },
       statementStyle = { bold = true },
       typeStyle = {},
-      transparent = true,   -- do not set background color
+      transparent = false,   -- do not set background color
       dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
       terminalColors = true, -- define vim.g.terminal_color_{0,17}
       colors = {             -- add/modify theme and palette colors
@@ -480,7 +480,7 @@ require('nightfox').setup({
     -- Compiled file's destination location
     compile_path = vim.fn.stdpath("cache") .. "/nightfox",
     compile_file_suffix = "_compiled", -- Compiled file suffix
-    transparent = true,     -- Disable setting background
+    transparent = false,     -- Disable setting background
     terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
     dim_inactive = false,    -- Non focused panes set to alternative background
     module_default = true,   -- Default enable value for modules
@@ -534,7 +534,7 @@ require("rose-pine").setup({
     styles = {
         bold = true,
         italic = true,
-        transparency = true,
+        transparency = false,
     },
 
     groups = {
