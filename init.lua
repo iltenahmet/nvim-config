@@ -452,6 +452,9 @@ require('lazy').setup({
   {
     "EdenEast/nightfox.nvim",
   },
+  {
+    "Shatur/neovim-ayu",
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -1048,7 +1051,7 @@ cmp.setup {
   },
 }
 
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("ayu-dark")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
