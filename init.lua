@@ -214,6 +214,30 @@ require('lazy').setup({
   {
     'simrat39/symbols-outline.nvim',
   },
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    keys = {
+      { "<leader>a",  nil,                              desc = "AI/Claude Code" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>",        mode = "v",                  desc = "Send to Claude" },
+      {
+        "<leader>as",
+        "<cmd>ClaudeCodeTreeAdd<cr>",
+        desc = "Add file",
+        ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+      },
+      -- Diff management
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
+    },
+  },
   --[[
   {
     "zbirenbaum/copilot.lua",
@@ -315,56 +339,56 @@ require('lazy').setup({
     'loctvl842/monokai-pro.nvim',
     config = function()
       require("monokai-pro").setup({
-      transparent_background = false,
-      terminal_colors = true,
-      devicons = true, -- highlight the icons of `nvim-web-devicons`
-      styles = {
-        comment = { italic = true },
-        keyword = { italic = true }, -- any other keyword
-        type = { italic = true }, -- (preferred) int, long, char, etc
-        storageclass = { italic = true }, -- static, register, volatile, etc
-        structure = { italic = true }, -- struct, union, enum, etc
-        parameter = { italic = true }, -- parameter pass in function
-        annotation = { italic = true },
-        tag_attribute = { italic = true }, -- attribute of tag in reactjs
-      },
-      filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
-      -- Enable this will disable filter option
-      day_night = {
-        enable = false, -- turn off by default
-        day_filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
-        night_filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
-      },
-      inc_search = "background", -- underline | background
-      background_clear = {
-        -- "float_win",
-        "toggleterm",
-        "telescope",
-        -- "which-key",
-        "renamer",
-        "notify",
-        -- "nvim-tree",
-        -- "neo-tree",
-        -- "bufferline", -- better used if background of `neo-tree` or `nvim-tree` is cleared
-      },-- "float_win", "toggleterm", "telescope", "which-key", "renamer", "neo-tree", "nvim-tree", "bufferline"
-      plugins = {
-        bufferline = {
-          underline_selected = false,
-          underline_visible = false,
+        transparent_background = false,
+        terminal_colors = true,
+        devicons = true, -- highlight the icons of `nvim-web-devicons`
+        styles = {
+          comment = { italic = true },
+          keyword = { italic = true },     -- any other keyword
+          type = { italic = true },        -- (preferred) int, long, char, etc
+          storageclass = { italic = true }, -- static, register, volatile, etc
+          structure = { italic = true },   -- struct, union, enum, etc
+          parameter = { italic = true },   -- parameter pass in function
+          annotation = { italic = true },
+          tag_attribute = { italic = true }, -- attribute of tag in reactjs
         },
-        indent_blankline = {
-          context_highlight = "pro", -- default | pro
-          context_start_underline = false,
+        filter = "pro",                    -- classic | octagon | pro | machine | ristretto | spectrum
+        -- Enable this will disable filter option
+        day_night = {
+          enable = false,          -- turn off by default
+          day_filter = "pro",      -- classic | octagon | pro | machine | ristretto | spectrum
+          night_filter = "spectrum", -- classic | octagon | pro | machine | ristretto | spectrum
         },
-      },
-      -- Fix indent-blankline visibility - https://github.com/lukas-reineke/indent-blankline.nvim/issues/963
-      override = function(c)
-        return {
-          IblIndent = { fg = c.base.dimmed4 },
-          IblScope = { fg = c.base.dimmed2 },
-        }
-      end,
-    })
+        inc_search = "background", -- underline | background
+        background_clear = {
+          -- "float_win",
+          "toggleterm",
+          "telescope",
+          -- "which-key",
+          "renamer",
+          "notify",
+          -- "nvim-tree",
+          -- "neo-tree",
+          -- "bufferline", -- better used if background of `neo-tree` or `nvim-tree` is cleared
+        }, -- "float_win", "toggleterm", "telescope", "which-key", "renamer", "neo-tree", "nvim-tree", "bufferline"
+        plugins = {
+          bufferline = {
+            underline_selected = false,
+            underline_visible = false,
+          },
+          indent_blankline = {
+            context_highlight = "pro", -- default | pro
+            context_start_underline = false,
+          },
+        },
+        -- Fix indent-blankline visibility - https://github.com/lukas-reineke/indent-blankline.nvim/issues/963
+        override = function(c)
+          return {
+            IblIndent = { fg = c.base.dimmed4 },
+            IblScope = { fg = c.base.dimmed2 },
+          }
+        end,
+      })
     end,
   },
   {
@@ -434,9 +458,9 @@ require('lazy').setup({
       overrides = function(colors) -- add/modify highlights
         return {}
       end,
-      theme = "dragon",  -- Load "wave" theme when 'background' option is not set
-      background = {   -- map the value of 'background' option to a theme
-        dark = "wave", -- try "dragon" !
+      theme = "dragon", -- Load "wave" theme when 'background' option is not set
+      background = {    -- map the value of 'background' option to a theme
+        dark = "wave",  -- try "dragon" !
         light = "lotus"
       }
     }
@@ -479,21 +503,21 @@ require('nightfox').setup({
     -- Compiled file's destination location
     compile_path = vim.fn.stdpath("cache") .. "/nightfox",
     compile_file_suffix = "_compiled", -- Compiled file suffix
-    transparent = false,     -- Disable setting background
-    terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-    dim_inactive = false,    -- Non focused panes set to alternative background
-    module_default = true,   -- Default enable value for modules
+    transparent = false,               -- Disable setting background
+    terminal_colors = true,            -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false,              -- Non focused panes set to alternative background
+    module_default = true,             -- Default enable value for modules
     colorblind = {
-      enable = false,        -- Enable colorblind support
-      simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
+      enable = false,                  -- Enable colorblind support
+      simulate_only = false,           -- Only show simulated colorblind colors and not diff shifted
       severity = {
-        protan = 0,          -- Severity [0,1] for protan (red)
-        deutan = 0,          -- Severity [0,1] for deutan (green)
-        tritan = 0,          -- Severity [0,1] for tritan (blue)
+        protan = 0,                    -- Severity [0,1] for protan (red)
+        deutan = 0,                    -- Severity [0,1] for deutan (green)
+        tritan = 0,                    -- Severity [0,1] for tritan (blue)
       },
     },
-    styles = {               -- Style to be applied to different syntax groups
-      comments = "NONE",     -- Value is any valid attr-list value `:help attr-list`
+    styles = {           -- Style to be applied to different syntax groups
+      comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
       conditionals = "NONE",
       constants = "NONE",
       functions = "NONE",
@@ -504,12 +528,12 @@ require('nightfox').setup({
       types = "NONE",
       variables = "NONE",
     },
-    inverse = {             -- Inverse highlight for different types
+    inverse = { -- Inverse highlight for different types
       match_paren = false,
       visual = false,
       search = false,
     },
-    modules = {             -- List of various plugins and additional options
+    modules = { -- List of various plugins and additional options
       -- ...
     },
   },
@@ -519,82 +543,82 @@ require('nightfox').setup({
 })
 
 require("rose-pine").setup({
-    variant = "auto", -- auto, main, moon, or dawn
-    dark_variant = "main", -- main, moon, or dawn
-    dim_inactive_windows = false,
-    extend_background_behind_borders = true,
+  variant = "auto",        -- auto, main, moon, or dawn
+  dark_variant = "main",   -- main, moon, or dawn
+  dim_inactive_windows = false,
+  extend_background_behind_borders = true,
 
-    enable = {
-        terminal = true,
-        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
-        migrations = true, -- Handle deprecated options automatically
-    },
+  enable = {
+    terminal = true,
+    legacy_highlights = true,     -- Improve compatibility for previous versions of Neovim
+    migrations = true,            -- Handle deprecated options automatically
+  },
 
-    styles = {
-        bold = true,
-        italic = true,
-        transparency = false,
-    },
+  styles = {
+    bold = true,
+    italic = true,
+    transparency = false,
+  },
 
-    groups = {
-        border = "muted",
-        link = "iris",
-        panel = "surface",
+  groups = {
+    border = "muted",
+    link = "iris",
+    panel = "surface",
 
-        error = "love",
-        hint = "iris",
-        info = "foam",
-        note = "pine",
-        todo = "rose",
-        warn = "gold",
+    error = "love",
+    hint = "iris",
+    info = "foam",
+    note = "pine",
+    todo = "rose",
+    warn = "gold",
 
-        git_add = "foam",
-        git_change = "rose",
-        git_delete = "love",
-        git_dirty = "rose",
-        git_ignore = "muted",
-        git_merge = "iris",
-        git_rename = "pine",
-        git_stage = "iris",
-        git_text = "rose",
-        git_untracked = "subtle",
+    git_add = "foam",
+    git_change = "rose",
+    git_delete = "love",
+    git_dirty = "rose",
+    git_ignore = "muted",
+    git_merge = "iris",
+    git_rename = "pine",
+    git_stage = "iris",
+    git_text = "rose",
+    git_untracked = "subtle",
 
-        h1 = "iris",
-        h2 = "foam",
-        h3 = "rose",
-        h4 = "gold",
-        h5 = "pine",
-        h6 = "foam",
-    },
+    h1 = "iris",
+    h2 = "foam",
+    h3 = "rose",
+    h4 = "gold",
+    h5 = "pine",
+    h6 = "foam",
+  },
 
-    palette = {
-        -- Override the builtin palette per variant
-        -- moon = {
-        --     base = '#18191a',
-        --     overlay = '#363738',
-        -- },
-    },
+  palette = {
+    -- Override the builtin palette per variant
+    -- moon = {
+    --     base = '#18191a',
+    --     overlay = '#363738',
+    -- },
+  },
 
-	-- NOTE: Highlight groups are extended (merged) by default. Disable this
-	-- per group via `inherit = false`
-    highlight_groups = {
-        -- Comment = { fg = "foam" },
-        -- StatusLine = { fg = "love", bg = "love", blend = 15 },
-        -- VertSplit = { fg = "muted", bg = "muted" },
-        -- Visual = { fg = "base", bg = "text", inherit = false },
-    },
+  -- NOTE: Highlight groups are extended (merged) by default. Disable this
+  -- per group via `inherit = false`
+  highlight_groups = {
+    -- Comment = { fg = "foam" },
+    -- StatusLine = { fg = "love", bg = "love", blend = 15 },
+    -- VertSplit = { fg = "muted", bg = "muted" },
+    -- Visual = { fg = "base", bg = "text", inherit = false },
+  },
 
-    before_highlight = function(group, highlight, palette)
-        -- Disable all undercurls
-        -- if highlight.undercurl then
-        --     highlight.undercurl = false
-        -- end
-        --
-        -- Change palette colour
-        -- if highlight.fg == palette.pine then
-        --     highlight.fg = palette.foam
-        -- end
-    end,
+  before_highlight = function(group, highlight, palette)
+    -- Disable all undercurls
+    -- if highlight.undercurl then
+    --     highlight.undercurl = false
+    -- end
+    --
+    -- Change palette colour
+    -- if highlight.fg == palette.pine then
+    --     highlight.fg = palette.foam
+    -- end
+  end,
 })
 
 -- Ahmet - symbols outline
