@@ -878,7 +878,6 @@ vim.keymap.set('n', '<leader>x', function() vim.cmd([[Explore]]) end, { desc = '
 require("toggleterm").setup {}
 vim.keymap.set({ 'n', 't' }, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end,
   { desc = '[T]oggle [T]erminal' })
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = '[T]oggle [T]erminal' })
 vim.keymap.set({ 'n', 'i', 'o', 't' }, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
 
 -- Ahmet - auto brackets
