@@ -862,6 +862,8 @@ local function next_window()
 end
 vim.keymap.set('n', '<leader>n', next_window, { desc = '[N]ext Window' })
 
+vim.keymap.set('n', '<leader>gg', function() vim.cmd([[LazyGit]]) end, { desc = 'Lazy[G]it'})
+
 
 -- https://www.reddit.com/r/neovim/comments/nspg8o/telescope_find_files_not_showing_hidden_files/
 -- https://github.com/skbolton/titan/blob/4d0d31cc6439a7565523b1018bec54e3e8bc502c/nvim/nvim/lua/mappings/filesystem.lua#L6
@@ -1229,7 +1231,7 @@ cmp.setup {
   },
 }
 
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("monokai-pro-classic")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
