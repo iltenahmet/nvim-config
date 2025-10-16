@@ -879,6 +879,8 @@ require("toggleterm").setup {}
 vim.keymap.set({ 'n', 't' }, '<leader>tt', function() vim.cmd([[ToggleTerm direction=float]]) end,
   { desc = '[T]oggle [T]erminal' })
 vim.keymap.set({ 'n', 'i', 'o', 't' }, '<A-`>', function() vim.cmd([[ToggleTerm direction=float]]) end, {})
+vim.keymap.set('n', '<leader>cc', function() vim.cmd([[TermExec cmd="claude" direction=float]]) end,
+  { desc = '[C]laude [C]ode' })
 
 -- Ahmet - auto brackets
 require("autoclose").setup()
