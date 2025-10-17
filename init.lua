@@ -909,6 +909,8 @@ vim.o.hlsearch = false
 vim.wo.number = true
 -- Set relative line number to true
 vim.wo.relativenumber = true
+-- Highlight cursor line
+vim.o.cursorline = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -1179,7 +1181,6 @@ require('which-key').add {
   { '<leader>h',     group = 'Git [H]unk',      mode = "v" },
   { "<leader>w",     proxy = "<c-w>" },
 }
-
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
@@ -1233,6 +1234,8 @@ cmp.setup {
 }
 
 vim.cmd.colorscheme("ayu-dark")
+-- ayu-dark specific config
+-- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#636A72' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
