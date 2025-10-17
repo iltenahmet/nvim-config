@@ -1232,7 +1232,7 @@ cmp.setup {
   },
 }
 
-vim.cmd.colorscheme("monokai-pro-classic")
+vim.cmd.colorscheme("ayu-dark")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
